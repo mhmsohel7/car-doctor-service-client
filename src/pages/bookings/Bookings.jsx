@@ -5,17 +5,17 @@ const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
-  const url = `http://localhost:5000/bookings?email=${user.email}`;
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setBookings(data);
       });
   }, []);
   return (
     <div>
-      <h1>bookings</h1>
+      <h1 className="text-5xl">bookings: {bookings.length}</h1>
     </div>
   );
 };
